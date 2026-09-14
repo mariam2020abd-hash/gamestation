@@ -38,15 +38,77 @@
     </section>
 
     <section class="games container" id="games" aria-labelledby="games-title">
-      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> الألعاب قيد التجهيز</span></div>
+      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> لعبة متاحة الآن</span></div>
       <div class="cards">
-        <article class="card puzzle"><div class="card-top"><span class="category-icon" aria-hidden="true">▦</span><span class="card-number">01 /</span></div><h3>شغّل ذهنك</h3><p>ألغاز بسيطة في فكرتها، ممتعة في حلّها. خذ وقتك واكتشف الخطوة التالية.</p><div class="card-bottom"><span>ألعاب الألغاز</span><span class="pill">قريبًا</span></div></article>
+        <article class="card puzzle"><div class="card-top"><span class="category-icon" aria-hidden="true">▦</span><span class="card-number">01 /</span></div><h3>تحدّي الذاكرة</h3><p>اثنتا عشرة بطاقة، وستة أزواج. تذكّر الرموز واعثر على البطاقات المتطابقة بأقل عدد من المحاولات.</p><div class="card-bottom"><span>ألعاب الألغاز</span><a class="button" href="#memory">العب الآن ↙</a></div></article>
         <article class="card arcade"><div class="card-top"><span class="category-icon" aria-hidden="true">ϟ</span><span class="card-number">02 /</span></div><h3>ارفع الحماس</h3><p>سرعة، تركيز، ومحاولة أخرى. اختبر ردّة فعلك وطارد رقمك القياسي.</p><div class="card-bottom"><span>ألعاب الأركيد</span><span class="pill">قريبًا</span></div></article>
         <article class="card challenge"><div class="card-top"><span class="category-icon" aria-hidden="true">◎</span><span class="card-number">03 /</span></div><h3>تحدَّ نفسك</h3><p>عندك بضع دقائق؟ حوّلها إلى تحدٍّ صغير، وإنجاز يستحق ابتسامة.</p><div class="card-bottom"><span>تحديات سريعة</span><span class="pill">قريبًا</span></div></article>
       </div>
     </section>
+    <section class="container memory" id="memory" aria-labelledby="memory-title">
+      <div class="section-heading"><div><p class="eyebrow">متاحة الآن · ألعاب الألغاز</p><h2 id="memory-title">تحدّي الذاكرة</h2></div><button class="button" id="memory-reset" type="button">لعبة جديدة ↻</button></div>
+      <p class="memory-help">اقلب بطاقتين في كل محاولة واعثر على الأزواج الستة. يمكنك اللعب باللمس أو بلوحة المفاتيح.</p>
+      <div class="memory-stats"><span>المحاولات: <strong id="memory-moves">0</strong></span><span>الأزواج: <strong id="memory-pairs">0 / 6</strong></span></div>
+      <div class="memory-grid" id="memory-grid" aria-label="بطاقات لعبة الذاكرة"></div>
+      <p id="memory-status" role="status" aria-live="polite">اختر بطاقتين لتبدأ.</p>
+      <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
+    </section>
   </main>
+  <script>
+    (() => {
+      const grid = document.getElementById('memory-grid');
+      const movesLabel = document.getElementById('memory-moves');
+      const pairsLabel = document.getElementById('memory-pairs');
+      const status = document.getElementById('memory-status');
+      const symbols = ['🌙', '🚀', '🎮', '⭐', '🎲', '🎯'];
+      let first = null, locked = false, moves = 0, pairs = 0, timer;
+      function reveal(card, visible) {
+        card.textContent = visible ? card.symbol : '✦';
+        card.classList.toggle('revealed', visible);
+        card.setAttribute('aria-label', visible ? `بطاقة ${card.symbol}` : `بطاقة مخفية ${card.position}`);
+      }
+      function choose(card) {
+        if (locked || card === first || card.classList.contains('matched')) return;
+        reveal(card, true);
+        if (!first) { first = card; return; }
+        movesLabel.textContent = ++moves;
+        const previous = first;
+        first = null;
+        if (previous.symbol === card.symbol) {
+          [previous, card].forEach(item => { item.classList.add('matched'); item.setAttribute('aria-disabled', 'true'); });
+          pairsLabel.textContent = `${++pairs} / 6`;
+          status.textContent = pairs === 6 ? `أحسنت! اكتشفت كل الأزواج في ${moves} محاولة. جرّب لعبة جديدة!` : 'زوج متطابق! واصل اللعب.';
+        } else {
+          locked = true;
+          status.textContent = 'ليستا متطابقتين، تذكّر مكانهما وحاول مجددًا.';
+          timer = setTimeout(() => { reveal(previous, false); reveal(card, false); locked = false; }, 900);
+        }
+      }
+      function reset() {
+        clearTimeout(timer);
+        first = null; locked = false; moves = 0; pairs = 0;
+        movesLabel.textContent = '0'; pairsLabel.textContent = '0 / 6';
+        status.textContent = 'اختر بطاقتين لتبدأ.';
+        const deck = [...symbols, ...symbols];
+        for (let i = deck.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        grid.replaceChildren(...deck.map((symbol, index) => {
+          const card = document.createElement('button');
+          card.type = 'button'; card.className = 'memory-card';
+          card.symbol = symbol; card.position = index + 1;
+          reveal(card, false);
+          card.addEventListener('click', () => choose(card));
+          return card;
+        }));
+      }
+      document.getElementById('memory-reset').addEventListener('click', reset);
+      reset();
+    })();
+  </script>
 
   <footer class="footer container"><a class="brand" href="#" dir="ltr">GAMESTATION<span class="brand-dot">.</span></a><p>وقت قليل. متعة كثيرة.</p><span>صُنع لأوقات الاستراحة ✦</span></footer>
 </body>
 </html>
+
