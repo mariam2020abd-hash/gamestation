@@ -33,3 +33,27 @@ h1{font-size:clamp(44px,5.2vw,68px);line-height:1.45;letter-spacing:-2.5px;margi
 @media(max-width:900px){.container{width:calc(100% - 44px)}.hero{gap:24px}.hero-art{transform:scale(.85)}.orbit-two{width:360px}.cards{gap:12px}.card{padding:19px}.hero-note{gap:7px;font-size:9px}}
 @media(max-width:650px){.header{min-height:82px}.brand{font-size:15px}.brand-icon{width:27px;height:27px;font-size:22px}nav a{font-size:11px}nav a span{margin-inline-start:6px}.hero{grid-template-columns:1fr;padding-block:45px 40px;gap:35px}.hero-copy{text-align:center}.hero-copy .eyebrow{justify-content:center}h1{font-size:48px}.intro{margin-inline:auto;font-size:14px}.hero-note{justify-content:center;font-size:9px}.hero-art{min-height:365px;width:min(100%,370px);margin-inline:auto;transform:scale(.9)}.orbit{width:320px;height:320px}.orbit-two{width:350px;height:230px}.floating-label{right:0}.section-heading{align-items:flex-start;flex-direction:column;gap:12px}h2{font-size:21px}.cards{grid-template-columns:1fr;gap:14px}.card{padding:23px}.card p{font-size:13px}.games{padding-bottom:40px}.footer{flex-wrap:wrap;gap:8px}.footer>span{width:100%;margin-top:0}.footer p{margin:0}.hero-art .spark-one{left:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+
+/* Theme controls and light palette. The game illustration keeps its arcade colors. */
+nav{display:flex;align-items:center;gap:20px}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text);font:600 11px 'Noto Sans Arabic',Tahoma,Arial,sans-serif;cursor:pointer}
+.theme-toggle[hidden]{display:none}
+.theme-toggle:hover{background:var(--line)}
+.theme-toggle:focus-visible{outline:3px solid var(--accent,var(--lime));outline-offset:4px}
+.theme-icon{font:22px Arial,sans-serif}
+:root[data-theme="light"]{color-scheme:light;--bg:#f7f8f2;--text:#20271b;--muted:#59634f;--line:#d6ddcd;--accent:#4d6b16}
+[data-theme="light"] nav a,[data-theme="light"] .card-bottom{color:var(--text)}
+[data-theme="light"] h1>span,[data-theme="light"] .brand-dot,[data-theme="light"] nav a span,[data-theme="light"] nav a:hover{color:var(--accent)}
+[data-theme="light"] a:focus-visible{outline-color:var(--accent)}
+[data-theme="light"] .brand-icon{color:#20271b}
+[data-theme="light"] .eyebrow>span{background:var(--accent)}
+[data-theme="light"] .card{background:#fff}
+[data-theme="light"] .category-icon{background:#edf4db;color:var(--accent)}
+[data-theme="light"] .arcade .category-icon{background:#f0eafa;color:#7354a6}
+[data-theme="light"] .challenge .category-icon{background:#fbeae4;color:#a44f37}
+[data-theme="light"] .card-number{color:var(--muted)}
+[data-theme="light"] .pill{background:#edf1e6;color:#52613e}
+[data-theme="light"] .orbit{border-color:#ccd6b8}
+[data-theme="light"] .spark{color:var(--accent)}
+[data-theme="light"] .floating-label{color:#f4f5ef}
+@media(max-width:650px){.header{flex-wrap:wrap;padding-block:16px;gap:14px}nav{gap:12px;flex-wrap:wrap}.theme-toggle{font-size:10px}}
