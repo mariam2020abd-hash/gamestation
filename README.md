@@ -21,5 +21,11 @@ contains the project README; implementation has not started.
 - The technology stack.
 - The visual design and navigation.
 
-Setup and development instructions will be added once implementation begins.
-Amal 
+
+
+
+
+Setup and development instructions will be added once implementation begins. 
+mariam 
+Azzam Alrashed
+Amal
