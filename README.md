@@ -1,31 +1,33 @@
 # Gamestation
 
-Gamestation is a website for playing solo mini-games directly in your
-browser. It focuses on puzzles, arcade games, and quick challenges
-for short play sessions.
+موقع عربي لألعاب فردية قصيرة تعمل مباشرة في المتصفح، باستخدام HTML وCSS وJavaScript دون تبعيات أو خادم تطبيقات.
 
-## Project status
+## الألعاب المتاحة
 
-Gamestation is in the planning stage. This repository currently
-contains the project README; implementation has not started.
+- **تحدّي الذاكرة:** اكتشاف ستة أزواج من البطاقات.
+- **رحلة الحصان:** ثماني مراحل على رقعة 6×6. اجمع النجوم بقفزات الحصان ثم اهبط على البوابة المفتوحة. العوائق تمنع الهبوط فقط.
 
-## Planned experience
+## التشغيل
 
-- Browse a collection of solo mini-games.
-- Choose a game and play directly in the browser.
-- Enjoy quick sessions across puzzles, arcade games, and short challenges.
+افتح index.html في متصفح حديث، ثم اختر اللعبة. يمكن أيضًا تقديم المجلد عبر أي خادم ملفات ثابتة. افتح knight.html مباشرة للوصول إلى رحلة الحصان.
 
-## Still to decide
+يدعم الموقع الهاتف ولوحة المفاتيح والمظهرين الفاتح والداكن. في الرقعة، تنقّل بالأسهم واختر مربعًا مضيئًا باستخدام Enter أو المسافة. اتجاه الرقعة ثابت: A–F من اليسار إلى اليمين، و6–1 من الأعلى للأسفل.
 
-- The initial selection of games.
-- The technology stack.
-- The visual design and navigation.
+## رحلة الحصان
 
+- الحل الأمثل يمنح ثلاث شارات، وحتى قفزتين إضافيتين تمنحان شارتين، وما يزيد يمنح شارة واحدة.
+- التلميح يحدد القفزة التالية لأقصر حل من موضعك الحالي، ويخفض سقف التقييم إلى شارتين حتى عند التراجع. إعادة المرحلة تبدأ محاولة جديدة.
+- التراجع يعيد الموقع والنجوم وعدد القفزات. بعد الفوز استخدم إعادة اللعب لتحسين النتيجة.
+- يفتح الفوز المرحلة التالية. تُحفظ أفضل الشارات وأقل الحركات لكل مرحلة في localStorage تحت المفتاح gamestation-knight-v1، دون حفظ المحاولة الجارية. عند منع التخزين يستمر التقدّم داخل الجلسة فقط.
+- البيانات ثابتة في knight-levels.js، والقواعد والبحث بالعرض BFS والحفظ في knight-core.js، والتفاعل في knight.js.
+- المفاتيح والمربعات الهشة والأصوات ليست ضمن الإصدار الحالي.
 
+## التحقق
 
+يتطلب الاختبار الآلي Node.js حديثًا، دون تثبيت حزم:
 
+    node --test knight.test.js
 
-Setup and development instructions will be added once implementation begins. 
-mariam 
-Azzam Alrashed
-Amal
+تشمل الاختبارات هندسة الحركة والعوائق والبوابة، وحلول المراحل ونطاقات الصعوبة، والتلميحات من جميع الحالات القابلة للوصول، والجمع والتراجع، والتقييم والحفظ التالف أو غير المتاح.
+
+للتحقق اليدوي: العب مرحلة باللمس وبالأسهم، جرّب التلميح والتراجع وإعادة اللعب، وأكمل الرحلة ثم أعد تحميل الصفحة للتحقق من الحفظ. افحص العرض عند 360 بكسل والمظهرين وتقليل الحركة، وتأكد من استمرار لعبة الذاكرة بالعمل.

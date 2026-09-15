@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="رحلة الحصان: ثمانية ألغاز، اجمع النجوم وافتح البوابة بقفزات الحصان.">
+  <title>رحلة الحصان | Gamestation</title>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="knight.css">
+  <script src="knight-core.js" defer></script>
+  <script src="knight-levels.js" defer></script>
+  <script src="knight.js" defer></script>
+</head>
+<body>
+  <header class="header container">
+    <a class="brand" href="index.html" aria-label="Gamestation الرئيسية" dir="ltr"><span class="brand-icon" aria-hidden="true">✦</span> GAMESTATION<span class="brand-dot">.</span></a>
+    <nav aria-label="التنقل الرئيسي"><a href="index.html#games">كل الألعاب ↙</a><button class="theme-toggle" type="button" hidden aria-label="تبديل المظهر"><span class="theme-icon" aria-hidden="true"></span><span class="theme-label"></span></button></nav>
+  </header>
+  <main class="container knight-main">
+    <section class="journey-intro" aria-labelledby="journey-title">
+      <div><p class="eyebrow">تحديات صغيرة · خطوات مدروسة</p><h1 id="journey-title">رحلة <span>الحصان.</span></h1><p class="intro">اقفز بذكاء، اجمع النجوم، وافتح البوابة.<br>كل قفزة تقرّبك من حكاية جديدة.</p></div>
+      <div class="knight-emblem" aria-hidden="true">♞<span>✦</span></div>
+    </section>
+    <noscript><p>فعّل JavaScript لتشغيل رحلة الحصان.</p></noscript>
+    <section id="level-map" hidden aria-labelledby="map-title">
+      <div class="section-heading"><div><p class="eyebrow">ثماني محطات إلى النهاية</p><h2 id="map-title" tabindex="-1">اختر محطتك</h2></div><span id="journey-progress" class="journey-progress"></span></div>
+      <div id="level-list" class="level-list"></div>
+      <p class="map-note">تُفتح المراحل مع كل إنجاز. عُد إلى أي مرحلة مكتملة لتحسين نتيجتك.</p>
+    </section>
+    <section id="play-panel" hidden aria-labelledby="level-title">
+      <div class="section-heading"><div><p id="level-number" class="eyebrow"></p><h2 id="level-title" tabindex="-1"></h2></div><button id="back-map" class="quiet-button" type="button">خريطة المراحل ↗</button></div>
+      <div class="play-layout">
+        <div class="board-panel">
+          <div class="knight-stats"><span>القفزات <strong id="move-count">0</strong></span><span>النجوم <strong id="star-count" dir="ltr">0</strong></span><span>الحل الأمثل <strong id="optimal-count">0</strong></span></div>
+          <div id="knight-board" class="knight-board" role="group" aria-label="رقعة رحلة الحصان، ستة صفوف وستة أعمدة" aria-describedby="board-help"></div>
+          <p id="game-status" class="game-status" role="status" aria-live="polite" aria-atomic="true"></p>
+          <div class="game-controls"><button id="undo" class="quiet-button" type="button">تراجع ↶</button><button id="restart" class="quiet-button" type="button">إعادة ↻</button><button id="hint" class="quiet-button" type="button">تلميح ✧</button></div>
+          <p id="hint-note" class="small-note">التلميح يجعل أعلى تقييم للمحاولة شارتين.</p>
+        </div>
+        <aside class="journey-guide" aria-labelledby="guide-title">
+          <p class="eyebrow">خطّط. اقفز. اكتشف.</p><h3 id="guide-title">كل قفزة لها طريق</h3><p id="level-tip"></p>
+          <div class="move-diagram" aria-hidden="true"><span>♞</span><i></i><i></i><b>✦</b></div>
+          <p id="board-help">تحرّك بشكل حرف L: مربعين في اتجاه ثم مربعًا جانبيًا. اختر مربعًا مضيئًا للقفز. بلوحة المفاتيح: استخدم الأسهم للتنقّل وEnter أو المسافة للقفز.</p>
+          <ul class="board-legend"><li><span class="legend-star">★</span> اجمع كل النجوم</li><li><span>▧</span> العائق يمنع الهبوط فقط</li><li><span>▣</span> البوابة تفتح باكتمال النجوم</li></ul>
+          <p class="small-note">3 شارات للحل الأمثل، وشارتان حتى قفزتين إضافيتين. خذ وقتك؛ لا يوجد مؤقّت.</p>
+        </aside>
+      </div>
+      <section id="result" class="journey-result" hidden aria-labelledby="result-title">
+        <p class="eyebrow">قفزات تستحق الاحتفال</p><h2 id="result-title" tabindex="-1"></h2><p id="result-badges" class="result-badges"></p><p id="result-summary"></p>
+        <div class="result-actions"><button id="next-level" class="button" type="button">المرحلة التالية ↙</button><button id="replay" class="quiet-button" type="button">حسّن نتيجتك ↻</button><button id="result-map" class="quiet-button" type="button">خريطة المراحل</button></div>
+      </section>
+    </section>
+    <p id="storage-status" class="small-note" role="status"></p>
+  </main>
+  <footer class="footer container"><a class="brand" href="index.html" dir="ltr">GAMESTATION<span class="brand-dot">.</span></a><p>وقت قليل. متعة كثيرة.</p></footer>
+</body>
+</html>
