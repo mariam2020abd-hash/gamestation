@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الملف الشخصي | Gamestation</title>
+  <meta name="description" content="مساحتك الخاصة في Gamestation. خصّص ملفك واكتشف ألعابك المفضلة.">
+  <script src="theme.js"></script>
+  <script src="profile-store.js" defer></script>
+  <script src="profile.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header container">
+    <a class="brand" href="index.html" aria-label="Gamestation الرئيسية" dir="ltr"><span class="brand-icon" aria-hidden="true">✦</span> GAMESTATION<span class="brand-dot">.</span></a>
+    <nav aria-label="التنقل الرئيسي"><a href="index.html">العودة للرئيسية ↗</a><button class="theme-toggle" type="button" hidden aria-label="تبديل المظهر"><span class="theme-icon" aria-hidden="true"></span><span class="theme-label"></span></button></nav>
+  </header>
+  <main class="profile-page container">
+    <p class="eyebrow">مساحتك، على طريقتك ✦</p>
+    <h1>الملف <span>الشخصي.</span></h1>
+    <p class="profile-intro">استراحة تشبهك. اختر صورتك، واحتفظ بألعابك المفضلة في مكان واحد.</p>
+    <p class="profile-local-note">ملف محلي محفوظ في هذا المتصفح فقط، ولا يحتاج إلى تسجيل الدخول.</p>
+    <noscript>فعّل JavaScript لتعديل ملفك الشخصي وإدارة المفضلة.</noscript>
+    <section class="profile-panel" aria-labelledby="profile-name">
+      <div class="profile-summary">
+        <span class="profile-avatar" id="profile-avatar" role="img" aria-label="يد تحكم">🎮</span>
+        <div class="profile-identity"><p class="eyebrow">جاهز لاستراحة؟</p><h2 id="profile-name">لاعب جديد</h2><p>متعة صغيرة، بطابعك الخاص.</p></div>
+        <button class="profile-secondary" id="profile-edit" type="button" hidden>تعديل الملف</button>
+      </div>
+      <form id="profile-form" class="profile-form" hidden novalidate>
+        <div class="profile-name-field"><label for="profile-name-input">الاسم المعروض</label><input id="profile-name-input" type="text" required aria-describedby="profile-name-hint profile-name-error"><p id="profile-name-hint">من حرف واحد إلى ٣٠ حرفًا.</p><p class="profile-error" id="profile-name-error"></p></div>
+        <fieldset><legend>اختر صورتك</legend><div class="profile-avatars">
+          <label><input type="radio" name="avatar" value="🎮" checked aria-label="يد تحكم"><span aria-hidden="true">🎮</span></label>
+          <label><input type="radio" name="avatar" value="🚀" aria-label="صاروخ"><span aria-hidden="true">🚀</span></label>
+          <label><input type="radio" name="avatar" value="🌙" aria-label="هلال"><span aria-hidden="true">🌙</span></label>
+          <label><input type="radio" name="avatar" value="⭐" aria-label="نجمة"><span aria-hidden="true">⭐</span></label>
+          <label><input type="radio" name="avatar" value="🎲" aria-label="نرد"><span aria-hidden="true">🎲</span></label>
+          <label><input type="radio" name="avatar" value="🎯" aria-label="هدف"><span aria-hidden="true">🎯</span></label>
+        </div></fieldset>
+        <div class="profile-actions"><button class="button" type="submit">حفظ التغييرات</button><button class="profile-secondary" id="profile-cancel" type="button">إلغاء</button></div>
+      </form>
+      <p class="profile-message" id="profile-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+    <section class="profile-section" aria-labelledby="profile-stats-title">
+      <div class="section-heading"><div><p class="eyebrow">لمحة عن رحلتك</p><h2 id="profile-stats-title">إحصائيات توضيحية</h2></div><span class="pill">بيانات تجريبية</span></div>
+      <p class="profile-section-note">أرقام للعرض فقط؛ لا تتغيّر عند اللعب حاليًا.</p>
+      <dl class="profile-stats"><div><dt>جلسات مكتملة</dt><dd>١٢ <small>جلسة</small></dd></div><div><dt>أفضل نتيجة في تحدّي الذاكرة</dt><dd>٨ <small>محاولات</small></dd></div><div><dt>أزواج متطابقة</dt><dd>٧٢ <small>زوجًا</small></dd></div></dl>
+    </section>
+    <section class="profile-section" aria-labelledby="profile-favorites-title">
+      <div class="section-heading"><div><p class="eyebrow">ارجع لما تحب</p><h2 id="profile-favorites-title">ألعابك المفضلة</h2></div><a href="index.html#games">اكتشف الألعاب ↗</a></div>
+      <div class="profile-empty" id="profile-empty"><span aria-hidden="true">♡</span><h3>مكان للعبة تحبّها</h3><p>أضف تحدّي الذاكرة إلى المفضلة من صفحة الألعاب لتجده هنا.</p><a class="button" href="index.html#games">اكتشف الألعاب ↗</a></div>
+      <article class="card puzzle profile-favorite-card" id="profile-favorite-card" hidden><span class="category-icon" aria-hidden="true">▦</span><h3>تحدّي الذاكرة</h3><p>ستة أزواج، وقليل من التركيز. هل تحسّن نتيجتك في المحاولة القادمة؟</p><div class="profile-actions"><a class="button" href="index.html#memory">العب الآن ↗</a><button class="favorite-toggle" type="button" data-favorite="memory" aria-pressed="true">♥ إزالة من المفضلة</button></div></article>
+      <p class="profile-message" id="favorite-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer class="footer container"><a class="brand" href="index.html" dir="ltr">GAMESTATION<span class="brand-dot">.</span></a><p>وقت قليل. متعة كثيرة.</p><span>صُنع لأوقات الاستراحة ✦</span></footer>
+</body>
+</html>
