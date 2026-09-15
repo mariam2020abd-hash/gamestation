@@ -6,13 +6,58 @@
   <meta name="description" content="Gamestation — استراحة صغيرة، ومتعة كبيرة. اكتشف ألعاب الألغاز والأركيد والتحديات القصيرة في متصفحك.">
   <title>Gamestation | مساحة صغيرة للمتعة</title>
   <script src="theme.js"></script>
+  <script src="auth.js" defer></script>
+  <script src="profile-store.js" defer></script>
+  <script src="profile.js" defer></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="header container">
     <a class="brand" href="#" aria-label="Gamestation الرئيسية" dir="ltr"><span class="brand-icon" aria-hidden="true">✦</span> GAMESTATION<span class="brand-dot">.</span></a>
-    <nav aria-label="التنقل الرئيسي"><a href="#games">اكتشف الألعاب <span aria-hidden="true">↙</span></a><button class="theme-toggle" type="button" hidden aria-label="تبديل المظهر"><span class="theme-icon" aria-hidden="true"></span><span class="theme-label"></span></button></nav>
+    <nav aria-label="التنقل الرئيسي"><a href="#games">اكتشف الألعاب <span aria-hidden="true">↙</span></a><a href="profile.html">الملف الشخصي</a><button class="auth-open" type="button" hidden aria-haspopup="dialog" aria-controls="auth-dialog">تسجيل الدخول</button><button class="theme-toggle" type="button" hidden aria-label="تبديل المظهر"><span class="theme-icon" aria-hidden="true"></span><span class="theme-label"></span></button></nav>
   </header>
+
+  <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title" aria-describedby="auth-description">
+    <div class="auth-heading">
+      <p class="eyebrow">استراحتك تبدأ هنا ✦</p>
+      <button class="auth-close" type="button" aria-label="إغلاق نافذة الحساب">✕</button>
+    </div>
+    <h2 id="auth-title">تسجيل الدخول</h2>
+    <p class="auth-description" id="auth-description">أهلًا بعودتك! خذ استراحة واستمتع بألعابك.</p>
+    <p class="auth-preview">واجهة تجريبية — تسجيل الدخول وإنشاء الحسابات غير متاحين بعد.</p>
+    <form id="auth-form" novalidate autocomplete="off">
+      <div class="auth-field" id="auth-name-field" hidden>
+        <label for="auth-name">اسم المستخدم</label>
+        <input id="auth-name" type="text" autocomplete="off" disabled aria-describedby="auth-name-error">
+        <span class="auth-error" id="auth-name-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="auth-email">البريد الإلكتروني</label>
+        <input id="auth-email" type="email" dir="ltr" autocomplete="off" required aria-describedby="auth-email-error" autofocus>
+        <span class="auth-error" id="auth-email-error"></span>
+      </div>
+      <div class="auth-field">
+        <label for="auth-password">كلمة المرور</label>
+        <div class="auth-password-row">
+          <input id="auth-password" type="password" dir="ltr" autocomplete="off" required aria-describedby="auth-password-hint auth-password-error">
+          <button class="auth-visibility" type="button" data-password="auth-password" aria-controls="auth-password" aria-label="إظهار كلمة المرور" aria-pressed="false">إظهار</button>
+        </div>
+        <span class="auth-hint" id="auth-password-hint" hidden>استخدم ٨ أحرف على الأقل.</span>
+        <span class="auth-error" id="auth-password-error"></span>
+      </div>
+      <div class="auth-field" id="auth-confirm-field" hidden>
+        <label for="auth-confirm">تأكيد كلمة المرور</label>
+        <div class="auth-password-row">
+          <input id="auth-confirm" type="password" dir="ltr" autocomplete="off" disabled aria-describedby="auth-confirm-error">
+          <button class="auth-visibility" type="button" data-password="auth-confirm" aria-controls="auth-confirm" aria-label="إظهار تأكيد كلمة المرور" aria-pressed="false">إظهار</button>
+        </div>
+        <span class="auth-error" id="auth-confirm-error"></span>
+      </div>
+      <button class="button auth-submit" type="submit">تسجيل الدخول</button>
+      <p class="auth-status" id="auth-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    </form>
+    <p class="auth-switch-row"><span id="auth-switch-prompt">ليس لديك حساب؟</span> <button class="auth-switch" type="button">إنشاء حساب</button></p>
+  </dialog>
 
   <main>
     <section class="hero container" aria-labelledby="hero-title">
@@ -38,9 +83,10 @@
     </section>
 
     <section class="games container" id="games" aria-labelledby="games-title">
-      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> لعبتان متاحتان الآن</span></div>
+      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> 4 ألعاب متاحة الآن</span></div>
+      <p class="profile-message" id="favorite-status" role="status" aria-live="polite"></p>
       <div class="cards">
-        <article class="card puzzle"><div class="card-top"><span class="category-icon" aria-hidden="true">▦</span><span class="card-number">01 /</span></div><h3>تحدّي الذاكرة</h3><p>اثنتا عشرة بطاقة، وستة أزواج. تذكّر الرموز واعثر على البطاقات المتطابقة بأقل عدد من المحاولات.</p><div class="card-bottom"><span>ألعاب الألغاز</span><a class="button" href="#memory">العب الآن ↙</a></div></article>
+        <article class="card puzzle"><div class="card-top"><span class="category-icon" aria-hidden="true">▦</span><span class="card-number">01 /</span></div><button class="favorite-toggle" type="button" data-favorite="memory" aria-pressed="false" hidden>♡ أضف للمفضلة</button><h3>تحدّي الذاكرة</h3><p>اثنتا عشرة بطاقة، وستة أزواج. تذكّر الرموز واعثر على البطاقات المتطابقة بأقل عدد من المحاولات.</p><div class="card-bottom"><span>ألعاب الألغاز</span><a class="button" href="#memory">العب الآن ↙</a></div></article>
         <article class="card arcade"><div class="card-top"><span class="category-icon" aria-hidden="true">ϟ</span><span class="card-number">02 /</span></div><h3>ارفع الحماس</h3><p>سرعة، تركيز، ومحاولة أخرى. اختبر ردّة فعلك وطارد رقمك القياسي.</p><div class="card-bottom"><span>ألعاب الأركيد</span><span class="pill">قريبًا</span></div></article>
         <article class="card challenge"><div class="card-top"><span class="category-icon" aria-hidden="true">♞</span><span class="card-number">03 /</span></div><h3>رحلة الحصان</h3><p>ثماني مراحل من القفزات الذكية. اجمع النجوم، تجاوز العوائق، وافتح البوابة بأقل عدد من الحركات.</p><div class="card-bottom"><span>تحديات ذهنية</span><a class="button" href="knight.html">العب الآن ↙</a></div></article>
       </div>
@@ -53,7 +99,34 @@
       <p id="memory-status" role="status" aria-live="polite">اختر بطاقتين لتبدأ.</p>
       <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
     </section>
+    <section class="container xo" id="xo" aria-labelledby="xo-title">
+      <div class="section-heading"><div><p class="eyebrow">متاحة الآن · تحديات سريعة</p><h2 id="xo-title">XO ضد الكمبيوتر</h2></div><button class="button" id="xo-reset" type="button">جولة جديدة ↻</button></div>
+      <p class="memory-help">أنت X والكمبيوتر O. اجمع ثلاث علامات أفقيًا أو عموديًا أو قطريًا لتفوز. أنت تبدأ كل جولة.</p>
+      <div class="xo-controls"><label for="xo-level">مستوى الصعوبة</label><select id="xo-level"><option value="easy">سهل</option><option value="hard">صعب</option></select><span>تغيير المستوى يبدأ جولة جديدة</span></div>
+      <div class="xo-scores" aria-label="نتائج هذه الجلسة"><span>أنت X <strong id="xo-wins">0</strong></span><span>تعادل <strong id="xo-draws">0</strong></span><span>الكمبيوتر O <strong id="xo-losses">0</strong></span></div>
+      <p id="xo-status" role="status" aria-live="polite">دورك! اختر مربعًا فارغًا.</p>
+      <div id="xo-board" class="xo-board" role="group" aria-label="لوحة XO" aria-describedby="xo-status" dir="ltr"></div>
+      <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
+    </section>
+    <section class="container guess" id="guess" aria-labelledby="guess-title">
+      <div class="section-heading"><div><p class="eyebrow">متاحة الآن · ألعاب الألغاز</p><h2 id="guess-title">تخمين الرقم</h2></div><button class="button" id="guess-reset" type="button">رقم جديد ↻</button></div>
+      <p class="memory-help" id="guess-help">اخترت لك رقمًا سرّيًا من 1 إلى 100. خمّن رقمًا صحيحًا واتبع التلميحات حتى تكتشفه. المحاولات غير محدودة!</p>
+      <div class="guess-panel">
+        <div class="guess-mystery" id="guess-mystery" aria-hidden="true">?</div>
+        <div class="guess-stats"><span>المحاولات: <strong id="guess-count">0</strong></span><span>أفضل نتيجة في الجلسة: <strong id="guess-best">—</strong></span></div>
+        <p id="guess-range">النطاق الممكن: 1 إلى 100</p>
+        <form id="guess-form" novalidate>
+          <label for="guess-input">ما هو الرقم؟</label>
+          <div class="guess-entry"><input id="guess-input" type="text" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="1–100" aria-describedby="guess-help guess-status"><button class="button" id="guess-submit" type="submit">خمّن ↵</button></div>
+        </form>
+        <p id="guess-status" role="status" aria-live="polite">اكتب تخمينك الأول لتبدأ.</p>
+        <details class="guess-history"><summary>سجل التخمينات</summary><ol id="guess-history"></ol></details>
+      </div>
+      <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
+    </section>
   </main>
+  <script src="guess.js"></script>
+  <script src="xo.js"></script>
   <script>
     (() => {
       const grid = document.getElementById('memory-grid');
@@ -111,4 +184,3 @@
   <footer class="footer container"><a class="brand" href="#" dir="ltr">GAMESTATION<span class="brand-dot">.</span></a><p>وقت قليل. متعة كثيرة.</p><span>صُنع لأوقات الاستراحة ✦</span></footer>
 </body>
 </html>
-
