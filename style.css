@@ -91,3 +91,21 @@ nav{display:flex;align-items:center;gap:20px}
 [data-theme="light"] .xo-cell[data-mark="O"]{color:#7354a6}
 .xo-cell.winning{background:#d8fa7730;border:3px solid var(--accent,var(--lime))}
 .xo button:focus-visible,.xo select:focus-visible{outline:3px solid var(--accent,var(--lime));outline-offset:4px}
+
+.guess{border-top:1px solid var(--line);padding-block:35px 55px}
+.guess .button{font-family:inherit;border:0;cursor:pointer}
+.guess-panel{max-width:560px;margin:24px auto 0;padding:24px;border:1px solid var(--line);border-radius:16px}
+.guess-mystery{display:grid;place-items:center;width:86px;height:86px;margin:0 auto 24px;border-radius:20px;background:#bcb0ed20;color:var(--text);font:700 48px Arial,sans-serif}
+.guess-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 24px;font-size:13px;color:var(--muted)}
+.guess-stats strong{color:var(--text)}
+#guess-range{text-align:center;color:var(--accent,var(--lime));font-size:14px;margin-block:22px}
+.guess-entry{display:flex;gap:12px;margin-top:10px}
+.guess-entry input{width:100%;min-width:0;min-height:48px;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:22px;text-align:center;padding:10px}
+.guess-entry .button{flex-shrink:0}
+.guess button:focus-visible,.guess input:focus-visible,.guess summary:focus-visible{outline:3px solid var(--accent,var(--lime));outline-offset:4px}
+.guess button:disabled{opacity:.5;cursor:default;transform:none}
+#guess-status{min-height:4em;line-height:1.9;font-size:14px}
+.guess-history{border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:13px}
+.guess-history summary{cursor:pointer;min-height:32px}
+#guess-history{max-height:180px;overflow:auto;line-height:2}
+@media(max-width:450px){.guess-panel{padding:18px}.guess-entry{gap:8px}.guess-entry .button{padding-inline:16px}}

@@ -38,10 +38,10 @@
     </section>
 
     <section class="games container" id="games" aria-labelledby="games-title">
-      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> لعبتان متاحتان الآن</span></div>
+      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> 3 ألعاب متاحة الآن</span></div>
       <div class="cards">
         <article class="card puzzle"><div class="card-top"><span class="category-icon" aria-hidden="true">▦</span><span class="card-number">01 /</span></div><h3>تحدّي الذاكرة</h3><p>اثنتا عشرة بطاقة، وستة أزواج. تذكّر الرموز واعثر على البطاقات المتطابقة بأقل عدد من المحاولات.</p><div class="card-bottom"><span>ألعاب الألغاز</span><a class="button" href="#memory">العب الآن ↙</a></div></article>
-        <article class="card arcade"><div class="card-top"><span class="category-icon" aria-hidden="true">ϟ</span><span class="card-number">02 /</span></div><h3>ارفع الحماس</h3><p>سرعة، تركيز، ومحاولة أخرى. اختبر ردّة فعلك وطارد رقمك القياسي.</p><div class="card-bottom"><span>ألعاب الأركيد</span><span class="pill">قريبًا</span></div></article>
+        <article class="card arcade"><div class="card-top"><span class="category-icon" aria-hidden="true">?</span><span class="card-number">02 /</span></div><h3>تخمين الرقم</h3><p>رقم سرّي بين 1 و100. اتبع تلميحات أكبر وأصغر واكتشفه بأقل عدد من المحاولات.</p><div class="card-bottom"><span>ألعاب الألغاز</span><a class="button" href="#guess">العب الآن ↙</a></div></article>
         <article class="card challenge"><div class="card-top"><span class="category-icon" aria-hidden="true">XO</span><span class="card-number">03 /</span></div><h3>XO ضد الكمبيوتر</h3><p>ثلاث علامات على خط واحد تفصلك عن الفوز. اختر مستوى الصعوبة وتحدَّ الكمبيوتر في جولة سريعة.</p><div class="card-bottom"><span>تحديات سريعة</span><a class="button" href="#xo">العب الآن ↙</a></div></article>
       </div>
     </section>
@@ -62,7 +62,24 @@
       <div id="xo-board" class="xo-board" role="group" aria-label="لوحة XO" aria-describedby="xo-status" dir="ltr"></div>
       <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
     </section>
+    <section class="container guess" id="guess" aria-labelledby="guess-title">
+      <div class="section-heading"><div><p class="eyebrow">متاحة الآن · ألعاب الألغاز</p><h2 id="guess-title">تخمين الرقم</h2></div><button class="button" id="guess-reset" type="button">رقم جديد ↻</button></div>
+      <p class="memory-help" id="guess-help">اخترت لك رقمًا سرّيًا من 1 إلى 100. خمّن رقمًا صحيحًا واتبع التلميحات حتى تكتشفه. المحاولات غير محدودة!</p>
+      <div class="guess-panel">
+        <div class="guess-mystery" id="guess-mystery" aria-hidden="true">?</div>
+        <div class="guess-stats"><span>المحاولات: <strong id="guess-count">0</strong></span><span>أفضل نتيجة في الجلسة: <strong id="guess-best">—</strong></span></div>
+        <p id="guess-range">النطاق الممكن: 1 إلى 100</p>
+        <form id="guess-form" novalidate>
+          <label for="guess-input">ما هو الرقم؟</label>
+          <div class="guess-entry"><input id="guess-input" type="text" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="1–100" aria-describedby="guess-help guess-status"><button class="button" id="guess-submit" type="submit">خمّن ↵</button></div>
+        </form>
+        <p id="guess-status" role="status" aria-live="polite">اكتب تخمينك الأول لتبدأ.</p>
+        <details class="guess-history"><summary>سجل التخمينات</summary><ol id="guess-history"></ol></details>
+      </div>
+      <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
+    </section>
   </main>
+  <script src="guess.js"></script>
   <script src="xo.js"></script>
   <script>
     (() => {
