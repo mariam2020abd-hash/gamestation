@@ -99,7 +99,34 @@
       <p id="memory-status" role="status" aria-live="polite">اختر بطاقتين لتبدأ.</p>
       <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
     </section>
+    <section class="container xo" id="xo" aria-labelledby="xo-title">
+      <div class="section-heading"><div><p class="eyebrow">متاحة الآن · تحديات سريعة</p><h2 id="xo-title">XO ضد الكمبيوتر</h2></div><button class="button" id="xo-reset" type="button">جولة جديدة ↻</button></div>
+      <p class="memory-help">أنت X والكمبيوتر O. اجمع ثلاث علامات أفقيًا أو عموديًا أو قطريًا لتفوز. أنت تبدأ كل جولة.</p>
+      <div class="xo-controls"><label for="xo-level">مستوى الصعوبة</label><select id="xo-level"><option value="easy">سهل</option><option value="hard">صعب</option></select><span>تغيير المستوى يبدأ جولة جديدة</span></div>
+      <div class="xo-scores" aria-label="نتائج هذه الجلسة"><span>أنت X <strong id="xo-wins">0</strong></span><span>تعادل <strong id="xo-draws">0</strong></span><span>الكمبيوتر O <strong id="xo-losses">0</strong></span></div>
+      <p id="xo-status" role="status" aria-live="polite">دورك! اختر مربعًا فارغًا.</p>
+      <div id="xo-board" class="xo-board" role="group" aria-label="لوحة XO" aria-describedby="xo-status" dir="ltr"></div>
+      <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
+    </section>
+    <section class="container guess" id="guess" aria-labelledby="guess-title">
+      <div class="section-heading"><div><p class="eyebrow">متاحة الآن · ألعاب الألغاز</p><h2 id="guess-title">تخمين الرقم</h2></div><button class="button" id="guess-reset" type="button">رقم جديد ↻</button></div>
+      <p class="memory-help" id="guess-help">اخترت لك رقمًا سرّيًا من 1 إلى 100. خمّن رقمًا صحيحًا واتبع التلميحات حتى تكتشفه. المحاولات غير محدودة!</p>
+      <div class="guess-panel">
+        <div class="guess-mystery" id="guess-mystery" aria-hidden="true">?</div>
+        <div class="guess-stats"><span>المحاولات: <strong id="guess-count">0</strong></span><span>أفضل نتيجة في الجلسة: <strong id="guess-best">—</strong></span></div>
+        <p id="guess-range">النطاق الممكن: 1 إلى 100</p>
+        <form id="guess-form" novalidate>
+          <label for="guess-input">ما هو الرقم؟</label>
+          <div class="guess-entry"><input id="guess-input" type="text" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="1–100" aria-describedby="guess-help guess-status"><button class="button" id="guess-submit" type="submit">خمّن ↵</button></div>
+        </form>
+        <p id="guess-status" role="status" aria-live="polite">اكتب تخمينك الأول لتبدأ.</p>
+        <details class="guess-history"><summary>سجل التخمينات</summary><ol id="guess-history"></ol></details>
+      </div>
+      <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
+    </section>
   </main>
+  <script src="guess.js"></script>
+  <script src="xo.js"></script>
   <script>
     (() => {
       const grid = document.getElementById('memory-grid');
