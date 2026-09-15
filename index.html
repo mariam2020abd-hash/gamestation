@@ -38,11 +38,11 @@
     </section>
 
     <section class="games container" id="games" aria-labelledby="games-title">
-      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> لعبة متاحة الآن</span></div>
+      <div class="section-heading"><div><p class="eyebrow">لكل مزاج، لعبة</p><h2 id="games-title">كيف تحب تقضي استراحتك؟</h2></div><span class="coming-soon"><span></span> لعبتان متاحتان الآن</span></div>
       <div class="cards">
         <article class="card puzzle"><div class="card-top"><span class="category-icon" aria-hidden="true">▦</span><span class="card-number">01 /</span></div><h3>تحدّي الذاكرة</h3><p>اثنتا عشرة بطاقة، وستة أزواج. تذكّر الرموز واعثر على البطاقات المتطابقة بأقل عدد من المحاولات.</p><div class="card-bottom"><span>ألعاب الألغاز</span><a class="button" href="#memory">العب الآن ↙</a></div></article>
         <article class="card arcade"><div class="card-top"><span class="category-icon" aria-hidden="true">ϟ</span><span class="card-number">02 /</span></div><h3>ارفع الحماس</h3><p>سرعة، تركيز، ومحاولة أخرى. اختبر ردّة فعلك وطارد رقمك القياسي.</p><div class="card-bottom"><span>ألعاب الأركيد</span><span class="pill">قريبًا</span></div></article>
-        <article class="card challenge"><div class="card-top"><span class="category-icon" aria-hidden="true">◎</span><span class="card-number">03 /</span></div><h3>تحدَّ نفسك</h3><p>عندك بضع دقائق؟ حوّلها إلى تحدٍّ صغير، وإنجاز يستحق ابتسامة.</p><div class="card-bottom"><span>تحديات سريعة</span><span class="pill">قريبًا</span></div></article>
+        <article class="card challenge"><div class="card-top"><span class="category-icon" aria-hidden="true">XO</span><span class="card-number">03 /</span></div><h3>XO ضد الكمبيوتر</h3><p>ثلاث علامات على خط واحد تفصلك عن الفوز. اختر مستوى الصعوبة وتحدَّ الكمبيوتر في جولة سريعة.</p><div class="card-bottom"><span>تحديات سريعة</span><a class="button" href="#xo">العب الآن ↙</a></div></article>
       </div>
     </section>
     <section class="container memory" id="memory" aria-labelledby="memory-title">
@@ -53,7 +53,17 @@
       <p id="memory-status" role="status" aria-live="polite">اختر بطاقتين لتبدأ.</p>
       <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
     </section>
+    <section class="container xo" id="xo" aria-labelledby="xo-title">
+      <div class="section-heading"><div><p class="eyebrow">متاحة الآن · تحديات سريعة</p><h2 id="xo-title">XO ضد الكمبيوتر</h2></div><button class="button" id="xo-reset" type="button">جولة جديدة ↻</button></div>
+      <p class="memory-help">أنت X والكمبيوتر O. اجمع ثلاث علامات أفقيًا أو عموديًا أو قطريًا لتفوز. أنت تبدأ كل جولة.</p>
+      <div class="xo-controls"><label for="xo-level">مستوى الصعوبة</label><select id="xo-level"><option value="easy">سهل</option><option value="hard">صعب</option></select><span>تغيير المستوى يبدأ جولة جديدة</span></div>
+      <div class="xo-scores" aria-label="نتائج هذه الجلسة"><span>أنت X <strong id="xo-wins">0</strong></span><span>تعادل <strong id="xo-draws">0</strong></span><span>الكمبيوتر O <strong id="xo-losses">0</strong></span></div>
+      <p id="xo-status" role="status" aria-live="polite">دورك! اختر مربعًا فارغًا.</p>
+      <div id="xo-board" class="xo-board" role="group" aria-label="لوحة XO" aria-describedby="xo-status" dir="ltr"></div>
+      <noscript>فعّل JavaScript في المتصفح لتشغيل اللعبة.</noscript>
+    </section>
   </main>
+  <script src="xo.js"></script>
   <script>
     (() => {
       const grid = document.getElementById('memory-grid');
